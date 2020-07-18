@@ -1,0 +1,22 @@
+{% extends "payment/base.html" %}
+{% block content %}
+    <h1>Pagos</h1>
+    <table class="table">
+        <tr>
+            <th>Atleta</th>
+            <th>Tipo</th>
+            <th>Monto</th>
+            <th>Fecha</th>
+            <th>Referencia</th>
+        </tr>  
+        {% for payment in payments %}
+            <tr>
+                <th>{{payment.athlete}}</th>
+                <th>{{payment.payment_type}}</th>
+                <th>{{payment.amount}}</th>
+                <th>{{payment.date|date:"SHORT_DATE_FORMAT"}}</th>
+                <th>{{payment.reference}}</th>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}
