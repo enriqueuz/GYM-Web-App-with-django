@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # Gym custom apps
     'payment.apps.PaymentConfig',
+    'users.apps.UsersConfig'
 ]
 
 MIDDLEWARE = [
