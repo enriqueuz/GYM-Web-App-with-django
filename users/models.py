@@ -18,6 +18,7 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
+    #Override de save method to resize images
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 

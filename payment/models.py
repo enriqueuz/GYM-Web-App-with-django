@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 class Payment(models.Model):
     payment_type = models.CharField(max_length=50)
@@ -11,3 +12,6 @@ class Payment(models.Model):
 
     def __str__(self):
         return self.payment_type
+
+    def get_absolute_url(self):
+        return reverse('payment-detail', kwargs={'pk': self.pk})

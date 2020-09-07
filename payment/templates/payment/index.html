@@ -10,13 +10,25 @@
             <th>Referencia</th>
         </tr>  
         {% for payment in payments %}
-            <tr>
-                <th>{{payment.athlete}}</th>
+            <tr data-href="{% url 'payment-detail' payment.id %}">
+                <th class="test">{{payment.athlete}}</th>
                 <th>{{payment.payment_type}}</th>
                 <th>{{payment.amount}}</th>
-                <th>{{payment.date|date:"SHORT_DATE_FORMAT"}}</th>
+                <th>{{payment.date|date:"SHORT_DATE_FORMAT"}}</a></th>
                 <th>{{payment.reference}}</th>
             </tr>
         {% endfor %}
     </table>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const rows = document.querySelectorAll("tr[data-href]");
+            
+            rows.forEach(row => {
+                row.addEventListener("click", () => {
+                    window.location.href = row.dataset.href;
+                })
+            });
+        });
+    </script>
 {% endblock content %}

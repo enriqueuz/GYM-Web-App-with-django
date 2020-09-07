@@ -1,0 +1,25 @@
+{% extends "payment/base.html" %}
+{% block content %}
+<article class="media content-section">
+    <img class="rounded-circle account-img" src="{{ object.athlete.profile.image.url }}">
+    <div class="media-body">
+        <div>
+            <h2><a class="mr-2 article-title"  href="#">{{ object.athlete }}</a></h2>
+            <strong class="article-title">{{ object.date|date:"SHORT_DATE_FORMAT"}}</strong>
+        </div>
+        <table class="table">
+            <tr>
+                <th>Tipo</th>
+                <th>Monto</th>
+                <th>Referencia</th>
+            </tr>  
+            <tr>
+                <th>{{payment.payment_type}}</th>
+                <th>{{payment.amount}}</th>
+                <th>{{payment.reference}}</th>
+            </tr>
+        </table>
+    </div>
+</article>
+
+{% endblock content %}
