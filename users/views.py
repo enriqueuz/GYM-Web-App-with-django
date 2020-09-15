@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .decorators import unauthenticated_user
 
+@unauthenticated_user
 def register(request):
     if request.method == 'POST':
         post = request.POST.copy()
@@ -36,7 +38,8 @@ def profile(request):
         p_form = ProfileUpdateForm(instance=request.user.profile)
     context = {
         'u_form':u_form,
-        'p_form':p_form
+        'p_form':p_form,
+        'title' : 'Perfil'
     }
 
     return render(request, 'users/profile.html', context)

@@ -6,7 +6,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Payment
 
 def index(request):
@@ -24,14 +24,44 @@ class PaymentListView(LoginRequiredMixin, ListView):
     context_object_name = 'payments'
     ordering = ['-date']
 
-class PaymentCreateView(LoginRequiredMixin, CreateView):
+    def get_queryset(self):
+        if self.request.user.is_staff == True:
+            return Payment.objects.all()
+        else:
+            return Payment.objects.filter(athlete=self.request.user)
+
+class PaymentCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Payment
     fields = ['payment_type', 'amount', 'reference', 'athlete']
 
-class PaymentUpdateView(LoginRequiredMixin, UpdateView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Crear pago'
+        return context
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+class PaymentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Payment
     fields = ['payment_type', 'amount', 'reference', 'athlete']
 
-class PaymentDeleteView(LoginRequiredMixin, DeleteView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Actualizar pago'
+        return context
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+class PaymentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Payment
     success_url = '/payment/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Elminar pago'
+        return context
+
+    def test_func(self):
+        return self.request.user.is_staff

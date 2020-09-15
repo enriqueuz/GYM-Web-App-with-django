@@ -19,6 +19,14 @@
                 <th>{{payment.reference}}</th>
             </tr>
         </table>
+        {% if user.is_staff %}
+            <fieldset>
+                <div class="form-group">
+                    <a class="btn btn-outline-secondary" href="{% url 'payment-update' object.id %}">Actualizar</a>
+                    <a class="btn btn-danger" href="{% url 'payment-delete' object.id %}">Elminar</a>
+                </div>
+            </fieldset>
+        {% endif %}
     </div>
 </article>
 

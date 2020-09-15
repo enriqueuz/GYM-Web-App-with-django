@@ -30,7 +30,9 @@
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
-                            <a class="nav-item nav-link" href="{% url 'payment-create' %}">Nuevo pago</a>
+                            {% if user.is_staff %}
+                                <a class="nav-item nav-link" href="{% url 'payment-create' %}">Nuevo pago</a>
+                            {% endif %}
                             <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                             <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                         {% else %}
