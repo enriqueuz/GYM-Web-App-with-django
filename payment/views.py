@@ -7,13 +7,8 @@ from django.views.generic import (
     DeleteView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Payment
+from .models import Payment, PaymentType
 
-def index(request):
-    context = {
-        'payments': Payment.objects.all()
-    }
-    return render(request, 'payment/index.html', context)
 
 class PaymentDetailView(DetailView):
     model = Payment
@@ -32,7 +27,7 @@ class PaymentListView(LoginRequiredMixin, ListView):
 
 class PaymentCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Payment
-    fields = ['payment_type', 'amount', 'reference', 'athlete']
+    fields = ['payment_type', 'reference', 'athlete']
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -44,7 +39,7 @@ class PaymentCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
 class PaymentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Payment
-    fields = ['payment_type', 'amount', 'reference', 'athlete']
+    fields = ['payment_type', 'reference', 'athlete']
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -61,6 +56,19 @@ class PaymentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Elminar pago'
+        return context
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class PaymentTypeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = PaymentType
+    fields = ['amount']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Cambiar precios'
         return context
 
     def test_func(self):

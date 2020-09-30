@@ -13,7 +13,7 @@
             <tr data-href="{% url 'payment-detail' payment.id %}">
                 <th class="test">{{payment.athlete}}</th>
                 <th>{{payment.payment_type}}</th>
-                <th>{{payment.amount}}</th>
+                <th>{{payment.payment_type.amount}}</th>
                 <th>{{payment.date|date:"SHORT_DATE_FORMAT"}}</a></th>
                 <th>{{payment.reference}}</th>
             </tr>
