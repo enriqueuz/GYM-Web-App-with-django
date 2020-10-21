@@ -2,48 +2,6 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
-    
-# class PaymentDescription(models.Model):
-#     INSCRIPTION = 'INS'
-#     JANUARY = 'JAN'
-#     FEBRUARY = 'FEB'
-#     MARCH = 'MAR'
-#     APRIL = 'APR'
-#     MAY = 'MAY'
-#     JUNE = 'JUN'
-#     JULY = 'JUL'
-#     AUGUST = 'AUG'
-#     SEPTEMBER = 'SEP'
-#     OCTOBER = 'OCT'
-#     NOVEMBER = 'NOV'
-#     DECEMBER = 'DEC'
-
-#     NAME_CHOICES = [
-#         ('Months', (
-#             (JANUARY, 'January'),
-#             (FEBRUARY, 'February'),
-#             (MARCH, 'March'),
-#             (APRIL, 'April'),
-#             (MAY, 'May'),
-#             (JUNE, 'June'),
-#             (JULY, 'July'),
-#             (AUGUST, 'August'),
-#             (SEPTEMBER, 'September'),
-#             (OCTOBER, 'October'),
-#             (NOVEMBER, 'November'),
-#             (DECEMBER, 'December')
-#             )
-#         )
-#         ('Others', (
-#             (INSCRIPTION, 'Inscription'),
-#             )
-#         )
-#     ]
-#     payment_name = models.CharField(max_length=3, choices=NAME_CHOICES)
-#     amount = models.FloatField()
-
-    #def __str__(self):
-        #return NAME_CHOICES[self.payment_name]  
 
 class PaymentType(models.Model):
     
@@ -52,7 +10,6 @@ class PaymentType(models.Model):
     FUNCTIONAL = 'FUN'
     KICKBOXING = 'KBX'
     ALL_ACCESS = 'ALL'
-    UNSPECIFIED = 'UNS'
 
     PAYMENT_CHOICES = (
         (INSCRIPTION, 'Inscription'),
@@ -60,11 +17,10 @@ class PaymentType(models.Model):
         (FUNCTIONAL, 'Functional'),
         (KICKBOXING, 'Kickboxing'),
         (ALL_ACCESS, 'All access'),
-        (UNSPECIFIED, 'Unspecified')
     )
 
 
-    payment_code = models.CharField(max_length=3, choices=PAYMENT_CHOICES, default=UNSPECIFIED)    
+    payment_code = models.CharField(max_length=3, choices=PAYMENT_CHOICES)    
     amount = models.FloatField()
 
     def __str__(self):
