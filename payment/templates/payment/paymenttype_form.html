@@ -1,0 +1,59 @@
+{% extends "payment/base.html "%}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="content-section">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">Cambiar precio</legend>
+                            {{ form|crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-outline-info" type="submit">Guardar pago</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="content-section">
+                    <legend>Elija tipo de pago</legend>
+                    <select name="types" id="types" class="form-control">
+                        {% for type in payment_types %}
+                            <option value="{{type.payment_code}}">{{type}}</option>
+                        {% endfor %}
+                    </select>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+{% block javascript %}
+        <script>
+            $("#types").on('change', function () {
+                var payment_code = $(this).val();
+                //console.log('El valor es ' + payment_code + ' y el tipo de dato es ' + typeof payment_code)
+                document.getElementById("id_payment_code").value = payment_code;  
+                $.ajax({
+                    type: 'GET',
+                    url: "{% url 'get-type-amount' %}",
+                    data: {"code": payment_code},
+                    success: function(response) {
+                        var amount = response['current_amount']
+                        //var id = response['current_id']
+                        console.log(amount);
+                        document.getElementById("id_amount").value = amount;
+                               
+                    }
+                })
+            }
+        )
+
+        </script>
+    {% endblock javascript %}

@@ -13,7 +13,7 @@ body {
   }
   
   .bg-steel {
-    background-color: #5f788a;
+    background-color: #00008B;
   }
   
   .site-header .navbar-nav .nav-link {
@@ -81,4 +81,13 @@ body {
   
   .account-heading {
     font-size: 2.5rem;
+  }
+  
+  /* Tables */
+  tr[data-href] {
+    cursor: pointer;
+  }
+
+  tr[data-href]:hover {
+    background-color: #ffff99;
   }

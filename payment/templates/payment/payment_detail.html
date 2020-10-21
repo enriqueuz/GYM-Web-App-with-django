@@ -1,0 +1,33 @@
+{% extends "payment/base.html" %}
+{% block content %}
+<article class="media content-section">
+    <img class="rounded-circle account-img" src="{{ object.athlete.profile.image.url }}">
+    <div class="media-body">
+        <div>
+            <h2><a class="mr-2 article-title"  href="#">{{ object.athlete }}</a></h2>
+            <strong class="article-title">{{ object.date|date:"SHORT_DATE_FORMAT"}}</strong>
+        </div>
+        <table class="table">
+            <tr>
+                <th>Tipo</th>
+                <th>Monto</th>
+                <th>Referencia</th>
+            </tr>  
+            <tr>
+                <th>{{object.payment_type}}</th>
+                <th>{{object.payment_type.amount}}</th>
+                <th>{{object.reference}}</th>
+            </tr>
+        </table>
+        {% if user.is_staff %}
+            <fieldset>
+                <div class="form-group">
+                    <a class="btn btn-outline-secondary" href="{% url 'payment-update' object.id %}">Actualizar</a>
+                    <a class="btn btn-danger" href="{% url 'payment-delete' object.id %}">Elminar</a>
+                </div>
+            </fieldset>
+        {% endif %}
+    </div>
+</article>
+
+{% endblock content %}
