@@ -1,35 +1,9 @@
 {% extends "payment/base.html" %}
 {% block content %}
-    <h1>Pagos</h1>
-    <table class="table">
-        <tr>
-            <th>Atleta</th>
-            <th>Tipo</th>
-            <th>Monto</th>
-            <th>Fecha</th>
-            <th>Referencia</th>
-        </tr>  
-        {% for payment in payments %}
-            <tr data-href="{% url 'payment-detail' payment.id %}">
-                <th class="test">{{payment.athlete}}</th>
-                <th>{{payment.payment_type}}</th>
-                <th>{{payment.payment_type.amount}}$</th>
-                <th>{{payment.date|date:"SHORT_DATE_FORMAT"}}</a></th>
-                <th>{{payment.reference}}</th>
-            </tr>
-        {% endfor %}
-    </table>
+    <h1>¡El mejor gimnasio multipropósito!</h1>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const rows = document.querySelectorAll("tr[data-href]");
-            
-            rows.forEach(row => {
-                row.addEventListener("click", () => {
-                    window.location.href = row.dataset.href;
-                })
-            });
-        });
-    </script>
+    
+
+    
 
 {% endblock content %}

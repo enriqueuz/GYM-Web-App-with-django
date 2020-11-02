@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% if title %}
-        <title>Pagos - {{ title }}</title>
+        <title>Health GYM - {{ title }}</title>
     {% else %}
-        <title>Pagos</title>
+        <title>Health GYM</title>
     {% endif %}
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -17,44 +17,50 @@
 <body>
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-            <div class="container">
-                <a class="navbar-brand mr-4" href="{% url 'index' %}">GYM</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarToggle">
-                    <div class="navbar-nav mr-auto">
-                        <a class="nav-item nav-link" href="{% url 'index' %}">Home</a>
-                        <div class="dropdown show">
-                            <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Payment Types
-                            </a>
-                        
-
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{% url 'payment_type-list' %}">Lista de tipos de pago</a>
-                                <a class="dropdown-item" href="{% url 'payment_type-update' %}">Actualizar tipos de pago</a>
-                            </div>
+            <div class="container"> 
+                    <a class="navbar-brand" href="{% url 'index' %}">
+                        <img src="{% static 'payment/logo.png' %}" alt="health" id="gym_logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarToggle">
+                        <div class="navbar-nav mr-auto">
+                            <a class="nav-item nav-link" href="{% url 'index' %}">Home</a>
+                            {% if user.is_authenticated %}
+                                <a class="nav-item nav-link" href="{% url 'payment-list' %}">Lista de Pagos</a>
+                                <div class="dropdown show">
+                                    <a class="btn dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Payment Types
+                                    </a>                      
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{% url 'payment_type-list' %}">Lista de tipos de pago</a>
+                                        {% if user.is_staff %}
+                                            <a class="dropdown-item" href="{% url 'payment_type-update' %}">Actualizar tipos de pago</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <!-- Navbar Right Side -->
+                        <div class="navbar-nav">
+                            {% if user.is_authenticated %}
+                                {% if user.is_staff %}
+                                    <a class="nav-item nav-link" href="{% url 'payment-create' %}">Nuevo pago</a>
+                                {% endif %}
+                                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                            {% else %}
+                                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                            {% endif %}
                         </div>
                     </div>
-                    <!-- Navbar Right Side -->
-                    <div class="navbar-nav">
-                        {% if user.is_authenticated %}
-                            {% if user.is_staff %}
-                                <a class="nav-item nav-link" href="{% url 'payment-create' %}">Nuevo pago</a>
-                            {% endif %}
-                            <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
-                            <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
-                        {% else %}
-                            <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-                            <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
-                        {% endif %}
-                    </div>
-                </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+
+    <div class="container" id="content">
         {%  if messages %}
             {% for message in messages%}
                 <div class="alert alert-{{ message.tags }}">
@@ -64,6 +70,10 @@
         {% endif %}
         {% block content %}{% endblock %}
     </div>
+
+    <footer>    
+
+    </footer>
     
 
 
