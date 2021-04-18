@@ -1,37 +1,66 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap'); */
+
 body {
-    color: #333333;
-    margin-top: 100px;
-    background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+  overflow-x: hidden;
+  margin-top: 100px;
+  /* background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed; */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  color: #333333;
+  font-family: 'Open Sans', sans-serif;
   }
 
-  .navbar {
-    padding: 0px;
-  }
-
-  #gym_logo {
-    height: auto;
-    width: 200px;
-    padding: 5px;
-  }
-
-  .navbar-dark .navbar-nav .show > .nav-link {
-    color:rgba(255,255,255,.5);
-}
-  
   h1, h2, h3, h4, h5, h6 {
     color: #444444;
   }
+
+  /* Navigation */
+
+  .navbar {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: .1rem;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .navbar-brand img {
+    height: 3rem;
+  }
+
+  .navbar-nav li {
+    padding-right: .5rem;
+  }
   
+  .navbar-dark .navbar-nav .nav-link {
+    color: white;
+    padding-top: .8rem ;
+  }
+
+  .navbar-dark .navbar-nav .nav-link.active,
+  .navbar-dark .navbar-nav .nav-link:hover {
+    color: #1ebba3;
+  }
+
   ul {
     margin: 0;
   }
-  
-  .bg-steel {
-    background-color: rgba(23, 23, 31, 0.3);
+
+  /* Landing page */
+  .home-inner {
+    background-image: url('landing.jpg');
+  }
+
+  .caption {
+    width: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 38%;
+    z-index: 1;
+    color: white;
+    text-transform: uppercase;
   }
   
   .content-section {
@@ -60,3 +89,4 @@ body {
   tr[data-href]:hover {
     background-color: #ffff99;
   }
+

@@ -1,11 +1,11 @@
 {% extends "payment/base.html" %}
 {% block content %}
-    <h1>Tipos de pagos</h1>
+    <h1>Payment types</h1>
     <table class="table">
         <tr>
-            <th>Tipo de pago</th>
-            <th>Monto</th>
-            <th>Codigo</th>
+            <th>Payment type</th>
+            <th>Amount</th>
+            <th>Code</th>
         </tr>  
         {% for payment_type in object_list %}
             <tr>

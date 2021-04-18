@@ -1,4 +1,9 @@
+""" Payments URL Configuration """
+
+# Django
 from django.urls import path
+
+# Views
 from .views import (
     PaymentListView, 
     PaymentDetailView, 

@@ -1,9 +1,53 @@
 {% extends "payment/base.html" %}
+{% load static %}
+
+{% block head_content %}
+    <link rel="stylesheet" href="{% static 'payment/fixed.css' %}">
+{% endblock%}
+
 {% block content %}
-    <h1>¡El mejor gimnasio multipropósito!</h1>
 
-    
+    <!-- Home section -->
+    <div id="home">
+        <!-- Landing Page -->
+        <div class="landing">
+            <div class="home-wrap">
+                <div class="home-inner">
 
-    
+                </div>
+            </div>
+        </div>
+
+        <div class="caption text-center">
+            <h1>Health Fitness</h1>
+            <h3>Crossfit - Functional - Kickboxing</h3>
+            <a class="btn btn-outline-dark btn-lg" href="#disciplines">Join today!</a>
+        </div>
+    </div>
+    <!-- End Home section -->
+
+    <!-- Disciplines section -->
+    <div id="disciplines" class="offset">
+
+    </div>
+    <!-- End Disciplines section -->
+
+    <!-- Location section -->
+    <div id="location" class="offset">
+
+    </div>
+    <!-- End Location section -->
+
+    <!-- Pricing section -->
+    <div id="pricing" class="offset">
+
+    </div>
+    <!-- End Pricing section -->
+
+    <!-- Contact section -->
+    <div id="contact" class="offset">
+
+    </div>
+    <!-- End Contact section -->
 
 {% endblock content %}

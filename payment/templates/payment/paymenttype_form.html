@@ -1,4 +1,4 @@
-{% extends "payment/base.html "%}
+{% extends "payment/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
 
@@ -9,18 +9,18 @@
                     <form method="POST">
                         {% csrf_token %}
                         <fieldset class="form-group">
-                            <legend class="border-bottom mb-4">Cambiar precio</legend>
+                            <legend class="border-bottom mb-4">Change price</legend>
                             {{ form|crispy }}
                         </fieldset>
                         <div class="form-group">
-                            <button class="btn btn-outline-info" type="submit">Guardar pago</button>
+                            <button class="btn btn-outline-info" type="submit">Submit</button>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="col-sm">
                 <div class="content-section">
-                    <legend>Elija tipo de pago</legend>
+                    <legend>Choose payment type</legend>
                     <select name="types" id="types" class="form-control">
                         {% for type in payment_types %}
                             <option value="{{type.payment_code}}">{{type}}</option>

@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Third party apps
+    'django_extensions',
+
     # Gym custom apps
     'payment.apps.PaymentConfig',
     'users.apps.UsersConfig',
@@ -83,10 +86,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'gym',
-        'USER': 'postgres',
-        'PASSWORD': '12345678',
-        'HOST': 'localhost',
-        'PORT' : ''
+        # 'USER': 'postgres',
+        # 'PASSWORD': '12345678',
+        # 'HOST': 'localhost',
+        # 'PORT' : ''
     }
 }
 

@@ -1,4 +1,4 @@
-{% extends "payment/base.html "%}
+{% extends "payment/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
 
@@ -9,18 +9,18 @@
                     <form method="POST">
                         {% csrf_token %}
                         <fieldset class="form-group">
-                            <legend class="border-bottom mb-4">Registro de pago</legend>
+                            <legend class="border-bottom mb-4">Register payment</legend>
                             {{ form|crispy }}
                         </fieldset>
                         <div class="form-group">
-                            <button class="btn btn-outline-info" type="submit">Guardar pago</button>
+                            <button class="btn btn-outline-info" type="submit">Submit payment</button>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="col-sm">
                 <div class="content-section">
-                    <legend>Monto</legend>
+                    <legend>Amount</legend>
                     <p id="total_amount"></p>
                     
                 </div>
