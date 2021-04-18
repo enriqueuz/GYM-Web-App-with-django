@@ -1,4 +1,9 @@
+""" Payments URL Configuration """
+
+# Django
 from django.urls import path
+
+# Views
 from .views import (
     PaymentListView, 
     PaymentDetailView, 
@@ -13,7 +18,7 @@ from .views import (
 from . import views
 
 urlpatterns = [
-    path('', PaymentListView.as_view(), name='index'),
+    path('', PaymentListView.as_view(), name='payment-list'),
     path('<int:pk>/', PaymentDetailView.as_view(), name='payment-detail'),
     path('<int:pk>/update', PaymentUpdateView.as_view(), name='payment-update'),
     path('<int:pk>/delete', PaymentDeleteView.as_view(), name='payment-delete'),

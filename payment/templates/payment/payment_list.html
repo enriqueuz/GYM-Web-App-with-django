@@ -1,17 +1,21 @@
 {% extends "payment/base.html" %}
 {% block content %}
-    <h1>Payment types</h1>
+    <h1>Payments</h1>
     <table class="table">
         <tr>
-            <th>Payment type</th>
+            <th>Athlete</th>
+            <th>Type</th>
             <th>Amount</th>
-            <th>Code</th>
+            <th>Date</th>
+            <th>Reference</th>
         </tr>  
-        {% for payment_type in object_list %}
-            <tr>
-                <th>{{payment_type}}</th>
-                <th>{{payment_type.amount}}$</th>
-                <th>{{payment_type.payment_code}}</th>
+        {% for payment in payments %}
+            <tr data-href="{% url 'payment-detail' payment.id %}">
+                <th class="test">{{payment.athlete}}</th>
+                <th>{{payment.payment_type}}</th>
+                <th>{{payment.payment_type.amount}}$</th>
+                <th>{{payment.date|date:"SHORT_DATE_FORMAT"}}</a></th>
+                <th>{{payment.reference}}</th>
             </tr>
         {% endfor %}
     </table>

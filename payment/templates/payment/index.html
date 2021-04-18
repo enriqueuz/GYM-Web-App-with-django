@@ -1,35 +1,53 @@
 {% extends "payment/base.html" %}
-{% block content %}
-    <h1>Pagos</h1>
-    <table class="table">
-        <tr>
-            <th>Atleta</th>
-            <th>Tipo</th>
-            <th>Monto</th>
-            <th>Fecha</th>
-            <th>Referencia</th>
-        </tr>  
-        {% for payment in payments %}
-            <tr data-href="{% url 'payment-detail' payment.id %}">
-                <th class="test">{{payment.athlete}}</th>
-                <th>{{payment.payment_type}}</th>
-                <th>{{payment.payment_type.amount}}$</th>
-                <th>{{payment.date|date:"SHORT_DATE_FORMAT"}}</a></th>
-                <th>{{payment.reference}}</th>
-            </tr>
-        {% endfor %}
-    </table>
+{% load static %}
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const rows = document.querySelectorAll("tr[data-href]");
-            
-            rows.forEach(row => {
-                row.addEventListener("click", () => {
-                    window.location.href = row.dataset.href;
-                })
-            });
-        });
-    </script>
+{% block head_content %}
+    <link rel="stylesheet" href="{% static 'payment/fixed.css' %}">
+{% endblock%}
+
+{% block content %}
+
+    <!-- Home section -->
+    <div id="home">
+        <!-- Landing Page -->
+        <div class="landing">
+            <div class="home-wrap">
+                <div class="home-inner">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="caption text-center">
+            <h1>Health Fitness</h1>
+            <h3>Crossfit - Functional - Kickboxing</h3>
+            <a class="btn btn-outline-dark btn-lg" href="#disciplines">Join today!</a>
+        </div>
+    </div>
+    <!-- End Home section -->
+
+    <!-- Disciplines section -->
+    <div id="disciplines" class="offset">
+
+    </div>
+    <!-- End Disciplines section -->
+
+    <!-- Location section -->
+    <div id="location" class="offset">
+
+    </div>
+    <!-- End Location section -->
+
+    <!-- Pricing section -->
+    <div id="pricing" class="offset">
+
+    </div>
+    <!-- End Pricing section -->
+
+    <!-- Contact section -->
+    <div id="contact" class="offset">
+
+    </div>
+    <!-- End Contact section -->
 
 {% endblock content %}
