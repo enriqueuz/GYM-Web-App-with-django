@@ -1,6 +1,6 @@
 # psycopg2-binary==2.8.5
 asgiref==3.2.10
-Django==3.0.7
+Django==3.0.14
 django-crispy-forms==1.9.2
 Pillow==7.2.0
 psycopg2==2.8.5
